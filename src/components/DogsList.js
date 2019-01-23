@@ -1,8 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default class DogsList extends React.Component {
   renderDogBreed(breed) {
-    return <li key={breed}>{breed}</li>;
+    return (
+      <li key={breed}>
+        <Link to={`/dog-breeds/${breed}`}>{breed}</Link>
+      </li>
+    );
   }
 
   render() {
@@ -10,9 +15,7 @@ export default class DogsList extends React.Component {
     return (
       <div className='dogs-list'>
         <h1>Dogs List</h1>
-
-        {!this.dogBreeds && 'Loading...'}
-
+        {!dogBreeds && 'Loading...'}
         {dogBreeds && <ul>{dogBreeds.map(this.renderDogBreed)}</ul>}
       </div>
     );
